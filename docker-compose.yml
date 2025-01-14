@@ -13,7 +13,7 @@ services:
       - ./genesis.blob:/opt/iota/config/genesis.blob:ro
       - ./iotadb:/opt/iota/db:rw
     command: [
-      "/opt/iota/bin/iota-node",
+      "/usr/local/bin/iota-node",
       "--config-path",
       "/opt/iota/config/fullnode.yaml",
     ]
