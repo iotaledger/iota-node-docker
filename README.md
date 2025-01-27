@@ -33,19 +33,10 @@ export IOTA_TOOLS_DOCKER_IMAGE="iotaledger/iota-tools:testnet"
 Download the validator configuration file template:
 
 ```bash
-curl -o validator.yaml https://docs.iota.org/assets/files/validator-2266ebf2d0176b56605685d9fa56ac80.yaml
+curl -o validator.yaml https://github.com/iotaledger/iota/raw/refs/heads/develop/nre/config/validator.yaml
 ```
 
-### 2. Add Account Key Pairs
-
-Configure your validator's account key pair in the `validator.yaml` file, we will use a script to generate key pairs later
-
-```yaml
-account-key-pair:
-  path: /opt/iota/key-pairs/account.key
-```
-
-### 3. Configure P2P Settings
+### 2. Configure P2P Settings
 
 Configure the P2P settings in your `validator.yaml` file by following these steps:
 
@@ -70,7 +61,7 @@ p2p-config:
       peer-id: 8ffd25fa4e86c30c3f8da7092695e8a103462d7a213b815d77d6da7f0a2a52f5
 ```
 
-### 4. Configure metrics pushing target
+### 3. Configure metrics pushing target
 
 Configure the metrics settings in your `validator.yaml` file by following these steps:
 
@@ -82,7 +73,7 @@ metrics:
   push-url: https://metrics-proxy.testnet.iota.cafe:8443/publish/metrics
 ```
 
-### 5. Download Genesis Block
+### 4. Download Genesis Block
 
 ```bash
 curl -fLJO https://dbfiles.testnet.iota.cafe/genesis.blob
@@ -90,7 +81,7 @@ curl -fLJO https://dbfiles.testnet.iota.cafe/genesis.blob
 
 > **Note**: The URL is for the IOTA Testnet only.
 
-### 6. Make validator.info and Generate Validator Keys
+### 5. Make validator.info and Generate Validator Keys
 
 Generate the necessary key pairs for your validator, the key pairs will be stored in `key-pairs` folder.
 
@@ -109,14 +100,14 @@ Copy this validator information and save it for later use in step 8, where you'l
 
 > **Important**: Back up your generated keys securely. Loss of these keys could result in loss of access to your validator.
 
-### 7. Start Your Validator Node
+### 6. Start Your Validator Node
 
 ```bash
 docker compose up -d
 docker compose logs -f
 ```
 
-### 8. Register as a Validator Candidate
+### 7. Register as a Validator Candidate
 
 We will obtain some tokens from the faucet for gas fees.
 
@@ -124,11 +115,11 @@ We will obtain some tokens from the faucet for gas fees.
 ./become_candidate.sh
 ```
 
-### 9. Request Delegation from IOTA Foundation
+### 8. Request Delegation from IOTA Foundation
 
 Contact the IOTA Foundation with your validator information obtained in Step 5
 
-### 10. Join the committee
+### 9. Join the committee
 
 Before joining the committee, ensure:
 - Your node is fully synced with the network
@@ -140,7 +131,7 @@ Once your node is ready, submit your request to join the committee:
 ./join_committee.sh
 ```
 
-### 11. Monitor Validator Status
+### 10. Monitor Validator Status
 
 ```bash
 docker run --rm -v ./iota_config:/root/.iota/iota_config iotaledger/iota-tools:testnet /bin/sh -c "/usr/local/bin/iota validator display-metadata" | grep status
