@@ -31,7 +31,7 @@ mkdir -p ./iota_config
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 mkdir -p "./tmp/backup_${TIMESTAMP}"
 
-NEW_ADDRESS_OUTPUT=$(docker run --rm -v ./iota_config:/root/.iota/iota_config "${IOTA_DOCKER_IMAGE}" /bin/sh -c '/usr/local/bin/iota client -y new-address ed25519 --json 2>&1')
+NEW_ADDRESS_OUTPUT=$(docker run --rm -v ./iota_config:/root/.iota/iota_config "${IOTA_DOCKER_IMAGE}" /bin/sh -c '/usr/local/bin/iota client -y new-address --json 2>&1')
 
 IOTA_ADDRESS=$(echo "$NEW_ADDRESS_OUTPUT" | sed -n '/{/,/}/p' | jq -r '.address')
 
