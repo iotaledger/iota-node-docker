@@ -9,7 +9,7 @@ if ! command -v jq &> /dev/null; then
 fi
 
 if [ -d "./iota_config" ] || [ -d "./key-pairs" ]; then
-    read -p "./iota_config or key-pairs Directory already exists. This will overwrite everything? [y/N] " response
+    read -p "./iota_config or ./key-pairs Directory already exists. This will overwrite everything? [y/N] " response
     if [[ ! $response =~ ^[Yy]$ ]]; then
         echo "Operation cancelled"
         exit 1
