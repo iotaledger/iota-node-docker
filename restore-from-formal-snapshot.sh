@@ -39,7 +39,10 @@ BACKUP="backup-$( date +"%Y-%m-%d-%H-%M-%S" )"
 
 mkdir -p ./iotadb/${BACKUP} &> /dev/null || error "creating backup directory"
 
-find ./iotadb/ -maxdepth 1 -type d -name "authorities_db" -or -name "consensus_db" -exec mv {} ./iotadb/${BACKUP}/ \;
+while read d
+do
+    mv "$d" ./iotadb/${BACKUP}/
+done< <(find ./iotadb/ -maxdepth 1 -type d -name "authorities_db" -or -name "consensus_db")
 
 echo "moved old directories to ${BACKUP} directory"
 
