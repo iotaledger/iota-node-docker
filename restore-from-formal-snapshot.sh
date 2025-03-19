@@ -17,7 +17,7 @@ function restore_with_formal() {
         -e FORMAL_SNAPSHOT_ARCHIVE_BUCKET=iota-testnet-archive \
         -e AWS_ARCHIVE_ENDPOINT=https://archive.testnet.iota.cafe \
         -e AWS_ARCHIVE_VIRTUAL_HOSTED_REQUESTS=true \
-        iotaledger/iota-tools:v0.10.3-rc \
+        iotaledger/iota-tools:testnet \
         /usr/local/bin/iota-tool download-formal-snapshot \
         --latest \
         --genesis /opt/iota/config/genesis.blob \
