@@ -28,27 +28,31 @@ function restore_with_formal() {
         --verbose || error "restoring from formal snapshot"
 }
 
-
-read -p "Really restore database from formal snapshot (y/*)?" restore_choice
+echo
+read -p "Really restore database from formal snapshot (y/*)? " restore_choice
+echo
 
 [[ "$restore_choice" != "y" ]] && error "aborted"
 
 docker compose down -t1 || error "stopping iota-node-docker setup"
 
-BACKUP="backup-$( date +"%Y-%m-%d-%H-%M-%S" )"
+BACKUP="backup-$( date +"%Y%m%d_%H%M%S" )"
 
 mkdir -p ./iotadb/${BACKUP} &> /dev/null || error "creating backup directory"
 
 while read d
 do
-    mv "$d" ./iotadb/${BACKUP}/
+    mv "$d" ./iotadb/${BACKUP}/ || error "moving $d"
+    echo "moved $d to ./iotadb/${BACKUP}/"
 done< <(find ./iotadb/ -maxdepth 1 -type d -name "authorities_db" -or -name "consensus_db")
 
-echo "moved old directories to ${BACKUP} directory"
+echo
 
 restore_with_formal
 
-read -p "Do you want to start the iota node now? (y/n): " start_node
+echo
+read -p "Do you want to start the iota node now? (y/*)? " start_node
+echo
 
 if [ "$start_node" == "y" ]; then
     docker compose up -d
