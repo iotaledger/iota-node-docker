@@ -152,7 +152,7 @@ The quickest and simplest way to restore the validator is to use the `restore-fr
 Here is an example what to expect:
 
 ```bash
-root:/opt/iota-node-docker$ ./restore-formal.sh
+root:/opt/iota-node-docker$ ./restore-from-formal-snapshot.sh
 
 Really restore database from formal snapshot (y/*)? y
 
