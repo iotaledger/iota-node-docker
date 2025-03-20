@@ -6,7 +6,7 @@ services:
       - "8081:8081"
       - "8084:8084/udp"
       - "9000:9000"
-      - "9184:9184"
+      - "127.0.0.1:9184:9184/tcp"
     volumes:
       - ./key-pairs:/opt/iota/key-pairs/:ro
       - ./validator.yaml:/opt/iota/config/fullnode.yaml:ro
