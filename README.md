@@ -144,3 +144,30 @@ You should see your node's status is `pending` now, it will become active and jo
 ```
 <YOUR-VALUDATOR_ADDRESS>'s validator status: Pending
 ```
+
+## Database Restore
+
+In rare cases, a database may become corrupted, for example, due to a server crash.
+
+The quickest and simplest way to restore the validator is to use the `restore-from-formal-snapshot.sh` script. This script removes the corrupted database and replaces it with a fresh one, created from [formal snapshots](https://docs.iota.org/operator/snapshots).
+
+Here is an example what to expect:
+
+```bash
+root:/opt/iota-node-docker$ ./restore-from-formal-snapshot.sh
+
+Really restore database from formal snapshot (y/*)? y
+
+moved ./iotadb/authorities_db to ./iotadb/backup-20250320_155111/
+
+2025-03-20T14:51:13.212121Z  INFO iota_tool: Starting summary sync
+2025-03-20T14:51:13.217892Z  INFO iota_config::object_storage_config: Object Store directory=Some("/opt/iota/db/snapshot") object_store_type="File"
+2025-03-20T14:51:22.538612Z  INFO iota_snapshot::reader: Computing checksums
+2025-03-20T14:53:07.510949Z  INFO iota_archival::reader: Terminating the manifest sync loop
+Successfully restored state from snapshot at end of epoch 121
+
+Do you want to start the iota node now? (y/*)? y
+
+```
+
+Afterwards the validator should run fine again.
