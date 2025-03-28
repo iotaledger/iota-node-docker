@@ -1,4 +1,4 @@
-### 📦 This repo has been merged into the [iota](https://github.com/iotaledger/iota) repository and is now archived.
+### 📦 This repo has been merged into the [iota](https://github.com/iotaledger/iota/tree/develop/setups/validator/docker) repository and is now archived.
 
 # IOTA Validator Setup Guide - Testnet
 
