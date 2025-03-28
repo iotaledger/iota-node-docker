@@ -1,3 +1,5 @@
+### 📦 This repo has been merged into the [iota](https://github.com/iotaledger/iota) repository and is now archived.
+
 # IOTA Validator Setup Guide - Testnet
 
 This guide walks you through the essential steps to set up an IOTA validator node.\
